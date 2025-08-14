@@ -121,7 +121,7 @@ class ContentManager {
 
     async loadContactContent() {
         try {
-            const response = await fetch('get_in_touch.md');
+            const response = await fetch('get_in_touch.md?v=' + Date.now());
             const html = await response.text();
             document.getElementById('contact-info').innerHTML = html;
         } catch (error) {
@@ -263,29 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize logo loading
     loadLogo();
     
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const organisation = formData.get('organisation');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !organisation || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Simulate form submission
-            alert(`Thank you for your message, ${name}! We'll get back to you soon at ${email}.`);
-            this.reset();
-        });
-    }
+
     
     // Initialize content manager
     new ContentManager();

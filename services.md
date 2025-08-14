@@ -7,7 +7,7 @@
 </div>
 <div class="service-card">
     <div class="service-icon">
-        <i class="fas fa-lottery"></i>
+        <i class="fas fa-star"></i>
     </div>
     <h3>Big Lottery & Statutory Applications</h3>
     <p>Expert guidance through complex lottery and government funding applications.</p>
