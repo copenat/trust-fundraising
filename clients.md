@@ -1,0 +1,12 @@
+<div class="client-item">Alzheimer's Society</div>
+<div class="client-item">Battersea Dogs and Cats Home</div>
+<div class="client-item">St John Ambulance</div>
+<div class="client-item">Phoenix Futures</div>
+<div class="client-item">Weston Hospicecare</div>
+<div class="client-item">Sport4Life</div>
+<div class="client-item">Dream Arts</div>
+<div class="client-item">Hope for the Young</div>
+<div class="client-item">National Star College</div>
+<div class="client-item">Work & Play</div>
+<div class="client-item">Aspire</div>
+<div class="client-item">Canine Partners</div>
