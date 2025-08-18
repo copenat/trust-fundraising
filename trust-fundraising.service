@@ -1,0 +1,16 @@
+[Unit]
+Description=Trust Fundraising Website
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/trust-fundraising
+ExecStart=/usr/bin/nginx -g "daemon off;"
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
