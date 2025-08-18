@@ -87,24 +87,14 @@ else
     exit 1
 fi
 
-# Configure UFW firewall
-echo "🔥 Configuring UFW firewall..."
+# Configure UFW firewall for nginx
+echo "🔥 Configuring UFW firewall for nginx..."
 
-# Reset UFW to default
-sudo ufw --force reset
-
-# Set default policies
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-
-# Allow SSH (important to keep this!)
-sudo ufw allow ssh
-
-# Allow HTTP and HTTPS
+# Allow HTTP and HTTPS for nginx
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 
-# Enable UFW
+# Enable UFW if not already enabled
 sudo ufw --force enable
 
 # Start and enable nginx

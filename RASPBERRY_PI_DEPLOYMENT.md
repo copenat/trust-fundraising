@@ -49,24 +49,14 @@ sudo apt update
 sudo apt install nginx -y
 ```
 
-### 2. Configure UFW Firewall
+### 2. Configure UFW Firewall for nginx
 
 ```bash
-# Reset UFW to default
-sudo ufw --force reset
-
-# Set default policies
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-
-# Allow SSH (IMPORTANT - don't skip this!)
-sudo ufw allow ssh
-
-# Allow HTTP and HTTPS
+# Allow HTTP and HTTPS for nginx
 sudo ufw allow 80/tcp
 sudo ufw allow 443/tcp
 
-# Enable UFW
+# Enable UFW if not already enabled
 sudo ufw --force enable
 
 # Check status
@@ -162,10 +152,9 @@ hostname -I
 The setup includes several security measures:
 
 ### UFW Firewall Rules
-- **Default deny incoming**: Blocks all incoming connections by default
-- **Default allow outgoing**: Allows all outgoing connections
-- **SSH allowed**: Keeps SSH access open (port 22)
+- **Preserves existing UFW configuration**: Only adds necessary rules for nginx
 - **HTTP/HTTPS allowed**: Allows web traffic (ports 80/443)
+- **Maintains existing SSH access**: Keeps your current SSH configuration
 
 ### nginx Security Headers
 - **X-Frame-Options**: Prevents clickjacking
