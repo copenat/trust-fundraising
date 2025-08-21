@@ -347,6 +347,11 @@ function initMobileNav() {
         hamburger.style.border = '2px solid red';
         hamburger.style.backgroundColor = 'yellow';
         
+        // Add a simple test alert to see if clicks are detected
+        hamburger.addEventListener('click', function(e) {
+            alert('Hamburger clicked!'); // Simple test alert
+        });
+        
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
