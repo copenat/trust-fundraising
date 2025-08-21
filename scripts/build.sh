@@ -25,10 +25,10 @@ if [ -f "index.html" ]; then
     cp index.html index_temp.html
     
     # Update build hash (handle both empty and existing content)
-    sed -i '' "s/<span id=\"build-hash\">.*<\/span>/<span id=\"build-hash\">$GIT_HASH<\/span>/g" index_temp.html
+    sed -i '' "s|id=\"build-hash\">[^<]*<|id=\"build-hash\">$GIT_HASH<|g" index_temp.html
     
     # Update build date (handle both empty and existing content)
-    sed -i '' "s/<span id=\"build-date\">.*<\/span>/<span id=\"build-date\">Built: $BUILD_DATE<\/span>/g" index_temp.html
+    sed -i '' "s|id=\"build-date\">[^<]*<|id=\"build-date\">Built: $BUILD_DATE<|g" index_temp.html
     
     # Replace the original file
     mv index_temp.html index.html
