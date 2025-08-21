@@ -9,6 +9,13 @@ GIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "dev")
 # Get current date
 BUILD_DATE=$(date +"%d/%m/%Y")
 
+# Check if this is being run from a Git hook
+if [ "$GIT_HOOK" = "1" ]; then
+    echo "📋 Running from Git hook - using current commit hash"
+else
+    echo "📋 Running standalone - using current commit hash"
+fi
+
 echo "📅 Build Date: $BUILD_DATE"
 echo "🔗 Git Hash: $GIT_HASH"
 

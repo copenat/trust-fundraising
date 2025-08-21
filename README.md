@@ -114,7 +114,23 @@ The website includes scripts for easy deployment to a Raspberry Pi:
 
 ### Build Process
 
-To update the build information in the footer:
+#### Automatic Build Information (Recommended)
+The build information is automatically updated when you make commits:
+
+```bash
+# Just commit normally - build info updates automatically
+git add .
+git commit -m "Your commit message"
+git push
+```
+
+**Git Hooks**: Pre-commit and post-commit hooks automatically:
+- Update build date to current date
+- Update build hash to the new commit hash
+- Stage the updated `index.html` file
+
+#### Manual Build Information
+To manually update the build information:
 
 ```bash
 # Run the build script to update build date and Git hash
