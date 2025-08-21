@@ -138,6 +138,9 @@ body {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0.5rem;
 }
 
 .bar {
@@ -146,6 +149,20 @@ body {
     background: #333;
     margin: 3px 0;
     transition: 0.3s;
+    border-radius: 2px;
+}
+
+/* Hamburger animation for active state */
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
 }
 
 /* Banner Section */
@@ -1014,14 +1031,6 @@ body {
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
     /* Navigation mobile optimization */
-    .nav-menu {
-        display: none; /* Hide regular menu on mobile */
-    }
-    
-    .nav-menu.active {
-        display: flex; /* Show when active */
-    }
-    
     .hamburger {
         display: flex;
         padding: 0.5rem;
@@ -1057,6 +1066,7 @@ body {
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
+        display: flex; /* Always flex when visible */
     }
 
     .nav-menu.active {
