@@ -258,8 +258,14 @@ class ContentManager {
     }
 }
 
-// Email protection function - Enhanced bot protection
-function showEmail() {
+// Email protection function - Enhanced bot protection with mobile support
+function showEmail(event) {
+    // Prevent any default behavior (navigation, scrolling, etc.)
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
+    
     const emailLink = document.getElementById('email-link');
     if (emailLink) {
         // More sophisticated obfuscation to prevent bot scraping
@@ -269,7 +275,11 @@ function showEmail() {
         // Update the link to show the email and make it clickable
         emailLink.innerHTML = email;
         emailLink.href = 'mailto:' + email;
-        emailLink.onclick = null; // Remove the onclick handler
+        
+        // Remove all event handlers to prevent conflicts
+        emailLink.onclick = null;
+        emailLink.removeEventListener('click', showEmail);
+        emailLink.removeEventListener('touchstart', showEmail);
         
         // Add visual feedback and delay to prevent bot detection
         emailLink.style.color = '#2563eb';
@@ -282,7 +292,11 @@ function showEmail() {
         setTimeout(() => {
             emailLink.style.transform = 'scale(1)';
         }, 300);
+        
+        // Prevent any further navigation
+        return false;
     }
+    return false;
 }
 
 // Lazy loading for images
@@ -348,6 +362,25 @@ function initMobileNav() {
                 document.body.style.overflow = '';
             }
         });
+    }
+}
+
+// Initialize email link with proper event handling
+function initEmailLink() {
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+        // Remove any existing onclick attribute to prevent conflicts
+        emailLink.removeAttribute('onclick');
+        
+        // Add event listeners for both click and touch
+        emailLink.addEventListener('click', showEmail, { passive: false });
+        emailLink.addEventListener('touchstart', showEmail, { passive: false });
+        
+        // Prevent any default link behavior
+        emailLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }, { passive: false });
     }
 }
 
@@ -489,6 +522,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize back to top button
     initBackToTop();
+    
+    // Initialize email link with proper event handling (with small delay for DOM)
+    setTimeout(initEmailLink, 100);
     
     // Load non-critical CSS after page load
     setTimeout(loadNonCriticalCSS, 1000);
