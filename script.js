@@ -372,15 +372,33 @@ function initEmailLink() {
         // Remove any existing onclick attribute to prevent conflicts
         emailLink.removeAttribute('onclick');
         
-        // Add event listeners for both click and touch
-        emailLink.addEventListener('click', showEmail, { passive: false });
-        emailLink.addEventListener('touchstart', showEmail, { passive: false });
+        // Remove any existing event listeners to prevent duplicates
+        emailLink.removeEventListener('click', showEmail);
+        emailLink.removeEventListener('touchstart', showEmail);
         
-        // Prevent any default link behavior
+        // Add event listeners for both click and touch with proper options
         emailLink.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
+            showEmail(e);
         }, { passive: false });
+        
+        emailLink.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            showEmail(e);
+        }, { passive: false });
+        
+        // Add visual feedback for touch
+        emailLink.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.95)';
+        }, { passive: true });
+        
+        emailLink.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        }, { passive: true });
+    } else {
+        console.warn('Email link not found');
     }
 }
 
@@ -433,6 +451,13 @@ function initMobilePerformance() {
 // Breadcrumb navigation functionality
 function initBreadcrumbNavigation() {
     const breadcrumbList = document.querySelector('.breadcrumb-list');
+    
+    // Check if breadcrumb list exists
+    if (!breadcrumbList) {
+        console.warn('Breadcrumb list not found');
+        return;
+    }
+    
     const sections = [
         { id: 'home', title: 'Home' },
         { id: 'about', title: 'About' },
@@ -445,66 +470,96 @@ function initBreadcrumbNavigation() {
     ];
     
     function updateBreadcrumb() {
-        const scrollPosition = window.scrollY + 100; // Offset for better detection
-        let currentSectionIndex = 0;
-        
-        // Find current section
-        for (let i = sections.length - 1; i >= 0; i--) {
-            const section = document.getElementById(sections[i].id);
-            if (section && scrollPosition >= section.offsetTop) {
-                currentSectionIndex = i;
-                break;
-            }
-        }
-        
-        // Clear existing breadcrumbs
-        breadcrumbList.innerHTML = '';
-        
-        // Build breadcrumb trail
-        for (let i = 0; i <= currentSectionIndex; i++) {
-            const listItem = document.createElement('li');
-            listItem.className = 'breadcrumb-item';
+        try {
+            const scrollPosition = window.scrollY + 100; // Offset for better detection
+            let currentSectionIndex = 0;
             
-            if (i === currentSectionIndex) {
-                // Current page
-                listItem.classList.add('breadcrumb-current');
-                listItem.setAttribute('aria-current', 'page');
-                
-                const span = document.createElement('span');
-                span.className = 'breadcrumb-text';
-                span.textContent = sections[i].title;
-                listItem.appendChild(span);
-            } else {
-                // Clickable link
-                const link = document.createElement('a');
-                link.href = '#' + sections[i].id;
-                link.className = 'breadcrumb-link';
-                link.textContent = sections[i].title;
-                
-                // Add smooth scroll behavior
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetSection = document.getElementById(sections[i].id);
-                    if (targetSection) {
-                        targetSection.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-                
-                listItem.appendChild(link);
+            // Find current section
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = document.getElementById(sections[i].id);
+                if (section && scrollPosition >= section.offsetTop) {
+                    currentSectionIndex = i;
+                    break;
+                }
             }
             
-            breadcrumbList.appendChild(listItem);
+            // Clear existing breadcrumbs
+            breadcrumbList.innerHTML = '';
+            
+            // Build breadcrumb trail
+            for (let i = 0; i <= currentSectionIndex; i++) {
+                const listItem = document.createElement('li');
+                listItem.className = 'breadcrumb-item';
+                
+                if (i === currentSectionIndex) {
+                    // Current page
+                    listItem.classList.add('breadcrumb-current');
+                    listItem.setAttribute('aria-current', 'page');
+                    
+                    const span = document.createElement('span');
+                    span.className = 'breadcrumb-text';
+                    span.textContent = sections[i].title;
+                    listItem.appendChild(span);
+                } else {
+                    // Clickable link
+                    const link = document.createElement('a');
+                    link.href = '#' + sections[i].id;
+                    link.className = 'breadcrumb-link';
+                    link.textContent = sections[i].title;
+                    
+                    // Add smooth scroll behavior with proper event handling
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const targetSection = document.getElementById(sections[i].id);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                        return false;
+                    });
+                    
+                    // Add touch event for mobile
+                    link.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        const targetSection = document.getElementById(sections[i].id);
+                        if (targetSection) {
+                            targetSection.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                        return false;
+                    });
+                    
+                    listItem.appendChild(link);
+                }
+                
+                breadcrumbList.appendChild(listItem);
+            }
+        } catch (error) {
+            console.error('Error updating breadcrumb:', error);
         }
     }
     
-    // Update breadcrumb on scroll
-    window.addEventListener('scroll', updateBreadcrumb);
+    // Update breadcrumb on scroll with throttling
+    let scrollTimeout;
+    function throttledUpdateBreadcrumb() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(updateBreadcrumb, 10);
+    }
     
-    // Initial update
-    updateBreadcrumb();
+    window.addEventListener('scroll', throttledUpdateBreadcrumb, { passive: true });
+    
+    // Initial update with delay to ensure DOM is ready
+    setTimeout(updateBreadcrumb, 100);
 }
 
 // Back to top button functionality
@@ -567,8 +622,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize back to top button
     initBackToTop();
     
-    // Initialize email link with proper event handling (with small delay for DOM)
-    setTimeout(initEmailLink, 100);
+    // Initialize email link with proper event handling (with delay for DOM)
+    setTimeout(initEmailLink, 200);
+    
+    // Fallback initialization for mobile compatibility
+    setTimeout(() => {
+        // Re-initialize breadcrumbs if needed
+        const breadcrumbList = document.querySelector('.breadcrumb-list');
+        if (breadcrumbList && breadcrumbList.children.length === 0) {
+            initBreadcrumbNavigation();
+        }
+        
+        // Re-initialize email link if needed
+        const emailLink = document.getElementById('email-link');
+        if (emailLink && !emailLink.hasAttribute('data-initialized')) {
+            emailLink.setAttribute('data-initialized', 'true');
+            initEmailLink();
+        }
+    }, 500);
     
     // Load non-critical CSS after page load
     setTimeout(loadNonCriticalCSS, 1000);
