@@ -477,119 +477,7 @@ function initMobilePerformance() {
     }
 }
 
-// Breadcrumb navigation functionality
-function initBreadcrumbNavigation() {
-    const breadcrumbList = document.querySelector('.breadcrumb-list');
-    
-    // Check if breadcrumb list exists
-    if (!breadcrumbList) {
-        console.warn('Breadcrumb list not found');
-        return;
-    }
-    
-    const sections = [
-        { id: 'home', title: 'Home' },
-        { id: 'about', title: 'About' },
-        { id: 'services', title: 'Services' },
-        { id: 'pricing', title: 'Pricing' },
-        { id: 'clients', title: 'Clients' },
-        { id: 'testimonials', title: 'Testimonials' },
-        { id: 'blog', title: 'News' },
-        { id: 'contact', title: 'Contact' }
-    ];
-    
-    function updateBreadcrumb() {
-        try {
-            const scrollPosition = window.scrollY + 100; // Offset for better detection
-            let currentSectionIndex = 0;
-            
-            // Find current section
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = document.getElementById(sections[i].id);
-                if (section && scrollPosition >= section.offsetTop) {
-                    currentSectionIndex = i;
-                    break;
-                }
-            }
-            
-            // Clear existing breadcrumbs
-            breadcrumbList.innerHTML = '';
-            
-            // Build breadcrumb trail
-            for (let i = 0; i <= currentSectionIndex; i++) {
-                const listItem = document.createElement('li');
-                listItem.className = 'breadcrumb-item';
-                
-                if (i === currentSectionIndex) {
-                    // Current page
-                    listItem.classList.add('breadcrumb-current');
-                    listItem.setAttribute('aria-current', 'page');
-                    
-                    const span = document.createElement('span');
-                    span.className = 'breadcrumb-text';
-                    span.textContent = sections[i].title;
-                    listItem.appendChild(span);
-                } else {
-                    // Clickable link
-                    const link = document.createElement('a');
-                    link.href = '#' + sections[i].id;
-                    link.className = 'breadcrumb-link';
-                    link.textContent = sections[i].title;
-                    
-                    // Add smooth scroll behavior with proper event handling
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        const targetSection = document.getElementById(sections[i].id);
-                        if (targetSection) {
-                            targetSection.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                        return false;
-                    });
-                    
-                    // Add touch event for mobile
-                    link.addEventListener('touchstart', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        const targetSection = document.getElementById(sections[i].id);
-                        if (targetSection) {
-                            targetSection.scrollIntoView({
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }
-                        return false;
-                    });
-                    
-                    listItem.appendChild(link);
-                }
-                
-                breadcrumbList.appendChild(listItem);
-            }
-        } catch (error) {
-            console.error('Error updating breadcrumb:', error);
-        }
-    }
-    
-    // Update breadcrumb on scroll with throttling
-    let scrollTimeout;
-    function throttledUpdateBreadcrumb() {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(updateBreadcrumb, 10);
-    }
-    
-    window.addEventListener('scroll', throttledUpdateBreadcrumb, { passive: true });
-    
-    // Initial update with delay to ensure DOM is ready
-    setTimeout(updateBreadcrumb, 100);
-}
+
 
 // Back to top button functionality
 function initBackToTop() {
@@ -645,8 +533,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize mobile performance optimizations
     initMobilePerformance();
     
-    // Initialize breadcrumb navigation
-    initBreadcrumbNavigation();
+
     
     // Initialize back to top button
     initBackToTop();
