@@ -112,6 +112,44 @@ The website includes scripts for easy deployment to a Raspberry Pi:
    sudo bash scripts/fix_port_conflict.sh
    ```
 
+### Build Process
+
+To update the build information in the footer:
+
+```bash
+# Run the build script to update build date and Git hash
+./scripts/build.sh
+```
+
+This will:
+- Update the build date to the current date
+- Update the build hash to the current Git commit hash
+- Display build information in the footer
+
+### Deployment
+
+#### For Development (Nginx):
+```bash
+# Run build script to update build info
+./scripts/build.sh
+
+# Deploy to Raspberry Pi
+sudo bash scripts/deploy.sh
+```
+
+#### For Production (Cloudflare):
+```bash
+# Prepare files for Cloudflare deployment
+./scripts/deploy-cloudflare.sh
+```
+
+This will:
+- Run the build script to update build info
+- Create a deployment manifest
+- Prepare files for upload to Cloudflare Pages
+
+**Note**: The build information (date and Git hash) will be embedded in the HTML files during the build process, so it will display correctly on Cloudflare even though it's a static site.
+
 ### Local Development
 
 For local development and testing:

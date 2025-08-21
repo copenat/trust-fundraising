@@ -1064,6 +1064,14 @@ body {
     color: #9ca3af;
 }
 
+.build-info {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-style: italic;
+    margin-top: 0.5rem;
+    opacity: 0.8;
+}
+
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
     /* Navigation mobile optimization */

@@ -365,6 +365,35 @@ function initMobileNav() {
     }
 }
 
+// Initialize build info
+function initBuildInfo() {
+    const buildDate = document.getElementById('build-date');
+    const buildHash = document.getElementById('build-hash');
+    
+    if (buildDate) {
+        // Check if build date is already set in HTML (from build process)
+        if (buildDate.textContent.trim() === '') {
+            // Fallback: set current date if not set by build process
+            const now = new Date();
+            const dateString = now.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            buildDate.textContent = `Built: ${dateString}`;
+        }
+    }
+    
+    if (buildHash) {
+        // Check if build hash is already set in HTML (from build process)
+        if (buildHash.textContent.trim() === '' || buildHash.textContent === 'dev') {
+            // Fallback: generate a timestamp-based hash for development
+            const timestamp = Date.now().toString(36);
+            buildHash.textContent = timestamp.substring(0, 7);
+        }
+    }
+}
+
 // Initialize email link with proper event handling
 function initEmailLink() {
     const emailLink = document.getElementById('email-link');
@@ -624,6 +653,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize email link with proper event handling (with delay for DOM)
     setTimeout(initEmailLink, 200);
+    
+    // Initialize build info
+    initBuildInfo();
     
     // Fallback initialization for mobile compatibility
     setTimeout(() => {
