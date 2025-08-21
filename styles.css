@@ -1014,6 +1014,14 @@ body {
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
     /* Navigation mobile optimization */
+    .nav-menu {
+        display: none; /* Hide regular menu on mobile */
+    }
+    
+    .nav-menu.active {
+        display: flex; /* Show when active */
+    }
+    
     .hamburger {
         display: flex;
         padding: 0.5rem;
@@ -1034,21 +1042,27 @@ body {
 
     .nav-menu {
         position: fixed;
-        left: -100%;
         top: 70px;
+        left: 0;
+        right: 0;
         flex-direction: column;
         background-color: white;
         width: 100%;
         text-align: center;
-        transition: 0.3s ease;
+        transition: all 0.3s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
         padding: 2rem 0;
         z-index: 1000;
         border-radius: 0 0 12px 12px;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
     }
 
     .nav-menu.active {
-        left: 0;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
         animation: slideIn 0.3s ease;
     }
 

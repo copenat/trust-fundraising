@@ -336,8 +336,15 @@ function initMobileNav() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
+    console.log('Mobile nav init - Hamburger:', hamburger);
+    console.log('Mobile nav init - Nav menu:', navMenu);
+    
     if (hamburger && navMenu) {
-        hamburger.addEventListener('click', function() {
+        hamburger.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Hamburger clicked!');
+            
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
             
