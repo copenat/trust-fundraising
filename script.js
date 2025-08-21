@@ -367,8 +367,24 @@ function initMobileNav() {
             console.log('Hamburger classes after:', hamburger.className);
             console.log('Is active?', navMenu.classList.contains('active'));
             
+            // Debug: Check computed styles
+            const computedStyle = window.getComputedStyle(navMenu);
+            console.log('Nav menu display:', computedStyle.display);
+            console.log('Nav menu visibility:', computedStyle.visibility);
+            console.log('Nav menu opacity:', computedStyle.opacity);
+            console.log('Nav menu transform:', computedStyle.transform);
+            
             // Prevent body scroll when menu is open
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+            
+            // Debug: Force menu to be visible for testing
+            if (navMenu.classList.contains('active')) {
+                navMenu.style.display = 'flex';
+                navMenu.style.visibility = 'visible';
+                navMenu.style.opacity = '1';
+                navMenu.style.transform = 'translateY(0)';
+                console.log('Forced menu to be visible for debugging');
+            }
         });
         
         // Close menu when clicking on a link
