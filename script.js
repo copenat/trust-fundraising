@@ -324,87 +324,30 @@ function initMobileNav() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    console.log('Mobile nav init - Hamburger found:', !!hamburger);
-    console.log('Mobile nav init - Nav menu found:', !!navMenu);
-    console.log('Mobile nav init - Window width:', window.innerWidth);
-    console.log('Mobile nav init - Hamburger element:', hamburger);
-    console.log('Mobile nav init - Nav menu element:', navMenu);
-    
     if (hamburger && navMenu) {
-        // Add a simple test click to see if the element is clickable
-        hamburger.style.border = '2px solid red';
-        hamburger.style.backgroundColor = 'yellow';
-        
-        // Ensure menu starts in hidden state - force it
+        // Ensure menu starts in hidden state
         navMenu.classList.remove('active');
         hamburger.classList.remove('active');
-        
-        // Also force the CSS properties to ensure it's hidden
-        navMenu.style.display = 'none';
-        navMenu.style.visibility = 'hidden';
-        navMenu.style.opacity = '0';
-        navMenu.style.transform = 'translateY(-100%)';
-        
-        console.log('Menu initialized - classes removed, styles forced to hidden');
-        
-        // Add a simple test alert to see if clicks are detected
-        hamburger.addEventListener('click', function(e) {
-            alert('Hamburger clicked!'); // Simple test alert
-        });
         
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
-            console.log('Hamburger clicked!');
-            console.log('Nav menu classes before:', navMenu.className);
-            console.log('Hamburger classes before:', hamburger.className);
-            
-            // Check if menu is currently hidden
-            const isHidden = navMenu.classList.contains('active') === false;
+            // Toggle menu visibility
+            const isHidden = !navMenu.classList.contains('active');
             
             if (isHidden) {
                 // Show menu
                 navMenu.classList.add('active');
                 hamburger.classList.add('active');
-                navMenu.style.display = 'flex';
-                navMenu.style.visibility = 'visible';
-                navMenu.style.opacity = '1';
-                navMenu.style.transform = 'translateY(0)';
-                console.log('Menu shown');
             } else {
                 // Hide menu
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
-                navMenu.style.display = 'none';
-                navMenu.style.visibility = 'hidden';
-                navMenu.style.opacity = '0';
-                navMenu.style.transform = 'translateY(-100%)';
-                console.log('Menu hidden');
             }
-            
-            console.log('Nav menu classes after:', navMenu.className);
-            console.log('Hamburger classes after:', hamburger.className);
-            console.log('Is active?', navMenu.classList.contains('active'));
-            
-            // Debug: Check computed styles
-            const computedStyle = window.getComputedStyle(navMenu);
-            console.log('Nav menu display:', computedStyle.display);
-            console.log('Nav menu visibility:', computedStyle.visibility);
-            console.log('Nav menu opacity:', computedStyle.opacity);
-            console.log('Nav menu transform:', computedStyle.transform);
             
             // Prevent body scroll when menu is open
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-            
-            // Debug: Force menu to be visible for testing
-            if (navMenu.classList.contains('active')) {
-                navMenu.style.display = 'flex';
-                navMenu.style.visibility = 'visible';
-                navMenu.style.opacity = '1';
-                navMenu.style.transform = 'translateY(0)';
-                console.log('Forced menu to be visible for debugging');
-            }
         });
         
         // Close menu when clicking on a link
