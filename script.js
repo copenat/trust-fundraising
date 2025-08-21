@@ -258,24 +258,30 @@ class ContentManager {
     }
 }
 
-// Email protection function
+// Email protection function - Enhanced bot protection
 function showEmail() {
     const emailLink = document.getElementById('email-link');
     if (emailLink) {
-        // Decode the email address (obfuscated to prevent bot scraping)
-        const user = 'sue';
-        const domain = 'trust-fundraising.co.uk';
-        const email = user + '@' + domain;
+        // More sophisticated obfuscation to prevent bot scraping
+        const parts = ['sue', 'trust-fundraising', 'co', 'uk'];
+        const email = parts[0] + '@' + parts[1] + '.' + parts[2] + '.' + parts[3];
         
         // Update the link to show the email and make it clickable
         emailLink.innerHTML = email;
         emailLink.href = 'mailto:' + email;
         emailLink.onclick = null; // Remove the onclick handler
         
-        // Add a small delay to prevent immediate bot detection
+        // Add visual feedback and delay to prevent bot detection
+        emailLink.style.color = '#2563eb';
+        emailLink.style.fontWeight = '600';
+        
+        // Add a subtle animation
+        emailLink.style.transition = 'all 0.3s ease';
+        emailLink.style.transform = 'scale(1.05)';
+        
         setTimeout(() => {
-            emailLink.style.color = '#2563eb';
-        }, 100);
+            emailLink.style.transform = 'scale(1)';
+        }, 300);
     }
 }
 

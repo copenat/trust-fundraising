@@ -145,8 +145,7 @@ python3 -m http.server 8000
 ## 📞 Contact
 
 For website updates or questions:
-- **Email**: sue@trust-fundraising.co.uk
-- **Phone**: 0208 133 4564
+- **Email**: contact@trust-fundraising.co.uk
 
 ---
 
