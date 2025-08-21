@@ -432,7 +432,7 @@ function initMobilePerformance() {
 
 // Breadcrumb navigation functionality
 function initBreadcrumbNavigation() {
-    const breadcrumbText = document.querySelector('.breadcrumb-text');
+    const breadcrumbList = document.querySelector('.breadcrumb-list');
     const sections = [
         { id: 'home', title: 'Home' },
         { id: 'about', title: 'About' },
@@ -446,13 +446,57 @@ function initBreadcrumbNavigation() {
     
     function updateBreadcrumb() {
         const scrollPosition = window.scrollY + 100; // Offset for better detection
+        let currentSectionIndex = 0;
         
+        // Find current section
         for (let i = sections.length - 1; i >= 0; i--) {
             const section = document.getElementById(sections[i].id);
             if (section && scrollPosition >= section.offsetTop) {
-                breadcrumbText.textContent = sections[i].title;
+                currentSectionIndex = i;
                 break;
             }
+        }
+        
+        // Clear existing breadcrumbs
+        breadcrumbList.innerHTML = '';
+        
+        // Build breadcrumb trail
+        for (let i = 0; i <= currentSectionIndex; i++) {
+            const listItem = document.createElement('li');
+            listItem.className = 'breadcrumb-item';
+            
+            if (i === currentSectionIndex) {
+                // Current page
+                listItem.classList.add('breadcrumb-current');
+                listItem.setAttribute('aria-current', 'page');
+                
+                const span = document.createElement('span');
+                span.className = 'breadcrumb-text';
+                span.textContent = sections[i].title;
+                listItem.appendChild(span);
+            } else {
+                // Clickable link
+                const link = document.createElement('a');
+                link.href = '#' + sections[i].id;
+                link.className = 'breadcrumb-link';
+                link.textContent = sections[i].title;
+                
+                // Add smooth scroll behavior
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = document.getElementById(sections[i].id);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+                
+                listItem.appendChild(link);
+            }
+            
+            breadcrumbList.appendChild(listItem);
         }
     }
     

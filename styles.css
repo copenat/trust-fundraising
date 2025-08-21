@@ -898,6 +898,9 @@ body {
     border-bottom: 1px solid #e2e8f0;
     padding: 0.75rem 0;
     font-size: 0.875rem;
+    position: sticky;
+    top: 70px;
+    z-index: 100;
 }
 
 .breadcrumb-list {
@@ -907,11 +910,13 @@ body {
     margin: 0;
     padding: 0;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .breadcrumb-item {
     display: flex;
     align-items: center;
+    min-height: 24px;
 }
 
 .breadcrumb-item:not(:last-child)::after {
@@ -925,16 +930,29 @@ body {
     color: #2563eb;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
 }
 
 .breadcrumb-link:hover {
     color: #1d4ed8;
     text-decoration: underline;
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.breadcrumb-link:active {
+    background: rgba(37, 99, 235, 0.2);
 }
 
 .breadcrumb-current .breadcrumb-text {
     color: #64748b;
     font-weight: 500;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(100, 116, 139, 0.1);
 }
 
 /* Back to Top Button */
@@ -1274,14 +1292,27 @@ body {
     .breadcrumb-nav {
         padding: 0.5rem 0;
         font-size: 0.8rem;
+        top: 60px;
     }
     
     .breadcrumb-list {
         gap: 0.25rem;
+        flex-wrap: wrap;
     }
     
     .breadcrumb-item:not(:last-child)::after {
         margin-left: 0.25rem;
+    }
+    
+    .breadcrumb-link {
+        padding: 0.2rem 0.4rem;
+        min-height: 20px;
+        font-size: 0.75rem;
+    }
+    
+    .breadcrumb-current .breadcrumb-text {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.75rem;
     }
     
     /* Back to top button mobile optimization */
