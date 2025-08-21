@@ -347,9 +347,17 @@ function initMobileNav() {
         hamburger.style.border = '2px solid red';
         hamburger.style.backgroundColor = 'yellow';
         
-        // Ensure menu starts in hidden state
+        // Ensure menu starts in hidden state - force it
         navMenu.classList.remove('active');
         hamburger.classList.remove('active');
+        
+        // Also force the CSS properties to ensure it's hidden
+        navMenu.style.display = 'none';
+        navMenu.style.visibility = 'hidden';
+        navMenu.style.opacity = '0';
+        navMenu.style.transform = 'translateY(-100%)';
+        
+        console.log('Menu initialized - classes removed, styles forced to hidden');
         
         // Add a simple test alert to see if clicks are detected
         hamburger.addEventListener('click', function(e) {
@@ -364,8 +372,28 @@ function initMobileNav() {
             console.log('Nav menu classes before:', navMenu.className);
             console.log('Hamburger classes before:', hamburger.className);
             
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
+            // Check if menu is currently hidden
+            const isHidden = navMenu.classList.contains('active') === false;
+            
+            if (isHidden) {
+                // Show menu
+                navMenu.classList.add('active');
+                hamburger.classList.add('active');
+                navMenu.style.display = 'flex';
+                navMenu.style.visibility = 'visible';
+                navMenu.style.opacity = '1';
+                navMenu.style.transform = 'translateY(0)';
+                console.log('Menu shown');
+            } else {
+                // Hide menu
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                navMenu.style.display = 'none';
+                navMenu.style.visibility = 'hidden';
+                navMenu.style.opacity = '0';
+                navMenu.style.transform = 'translateY(-100%)';
+                console.log('Menu hidden');
+            }
             
             console.log('Nav menu classes after:', navMenu.className);
             console.log('Hamburger classes after:', hamburger.className);
