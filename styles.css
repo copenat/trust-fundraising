@@ -135,7 +135,7 @@ body {
 }
 
 .hamburger {
-    display: none;
+    display: none; /* Hidden by default on desktop */
     flex-direction: column;
     cursor: pointer;
     background: none;

@@ -338,19 +338,28 @@ function initMobileNav() {
     
     console.log('Mobile nav init - Hamburger found:', !!hamburger);
     console.log('Mobile nav init - Nav menu found:', !!navMenu);
+    console.log('Mobile nav init - Window width:', window.innerWidth);
+    console.log('Mobile nav init - Hamburger element:', hamburger);
+    console.log('Mobile nav init - Nav menu element:', navMenu);
     
     if (hamburger && navMenu) {
+        // Add a simple test click to see if the element is clickable
+        hamburger.style.border = '2px solid red';
+        hamburger.style.backgroundColor = 'yellow';
+        
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
             console.log('Hamburger clicked!');
             console.log('Nav menu classes before:', navMenu.className);
+            console.log('Hamburger classes before:', hamburger.className);
             
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
             
             console.log('Nav menu classes after:', navMenu.className);
+            console.log('Hamburger classes after:', hamburger.className);
             console.log('Is active?', navMenu.classList.contains('active'));
             
             // Prevent body scroll when menu is open
