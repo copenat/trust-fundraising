@@ -347,6 +347,10 @@ function initMobileNav() {
         hamburger.style.border = '2px solid red';
         hamburger.style.backgroundColor = 'yellow';
         
+        // Ensure menu starts in hidden state
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        
         // Add a simple test alert to see if clicks are detected
         hamburger.addEventListener('click', function(e) {
             alert('Hamburger clicked!'); // Simple test alert
