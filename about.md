@@ -7,7 +7,7 @@
         Welcome to trust-fundraising.co.uk and to the home page of Sue Crow, a Trusts and Statutory Fundraising Specialist.
     </p>
     <p>
-        Sue provides hands-on fundraising support to UK-based charities. She has over 20 years' 
+        Sue provides hands-on fundraising support to UK-based charities. She has over 25 years' 
         experience in the fundraising sector with a proven track record of securing funds from 
         trusts and foundations, the Big Lottery (in its many incarnations) and UK government. 
         She relies on careful, in-depth research and well-honed communication skills to give 
@@ -38,15 +38,15 @@
 </div>
 <div class="about-stats">
     <div class="stat">
-        <h3>20+</h3>
+        <h3>25+</h3>
         <p>Years Experience</p>
     </div>
     <div class="stat">
-        <h3>£600K+</h3>
+                        <h3>£20m+</h3>
         <p>Funds Raised</p>
     </div>
     <div class="stat">
-        <h3>50+</h3>
+        <h3>75+</h3>
         <p>Happy Clients</p>
     </div>
 </div>

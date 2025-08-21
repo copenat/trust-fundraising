@@ -2,12 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- SEO Meta Tags -->
     <title>Trust Fundraising - Sue Crow | Trusts and Statutory Fundraising Specialist</title>
-    <link rel="icon" type="image/jpeg" href="cropped-trust-fundraising-logo.jpg">
+    <meta name="description" content="Professional trust fundraising services with 25+ years experience. Sue Crow helps UK charities secure funding from trusts, foundations, Big Lottery and government grants. £20m+ raised for 75+ clients.">
+    <meta name="keywords" content="trust fundraising, charity fundraising, grant applications, Big Lottery, statutory funding, UK charities, fundraising consultant, Sue Crow">
+    <meta name="author" content="Sue Crow">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Trust Fundraising - Sue Crow | Professional Fundraising Specialist">
+    <meta property="og:description" content="25+ years experience helping UK charities secure £20m+ in funding from trusts, foundations and government grants.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://trust-fundraising.co.uk">
+    <meta property="og:image" content="https://trust-fundraising.co.uk/cropped-trust-fundraising-logo.jpg">
+    <meta property="og:site_name" content="Trust Fundraising">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Trust Fundraising - Sue Crow">
+    <meta name="twitter:description" content="Professional trust fundraising services with 25+ years experience. £20m+ raised for UK charities.">
+    <meta name="twitter:image" content="https://trust-fundraising.co.uk/cropped-trust-fundraising-logo.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="cropped-trust-fundraising-logo.jpg">
+    <link rel="apple-touch-icon" href="cropped-trust-fundraising-logo.jpg">
+    
+    <!-- Performance Optimization -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#2563eb">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="cropped-Beach-huts-Littlehampton.jpg" as="image">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Trust Fundraising",
+        "description": "Professional trust fundraising services for UK charities",
+        "url": "https://trust-fundraising.co.uk",
+        "logo": "https://trust-fundraising.co.uk/cropped-trust-fundraising-logo.jpg",
+        "image": "https://trust-fundraising.co.uk/cropped-Beach-huts-Littlehampton.jpg",
+        "telephone": "+44-208-133-4564",
+        "email": "sue@trust-fundraising.co.uk",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB"
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Sue Crow",
+            "jobTitle": "Trusts and Statutory Fundraising Specialist",
+            "description": "25+ years experience in trust fundraising"
+        },
+        "serviceType": "Trust Fundraising",
+        "areaServed": "United Kingdom",
+        "priceRange": "£55-65/hour"
+    }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -20,9 +86,10 @@
                 <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
                 <li class="nav-item"><a href="#clients" class="nav-link">Clients</a></li>
                 <li class="nav-item"><a href="#testimonials" class="nav-link">Testimonials</a></li>
-                <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="#blog" class="nav-link">News</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="hamburger">
@@ -30,6 +97,20 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb-list">
+                <li class="breadcrumb-item">
+                    <a href="#home" class="breadcrumb-link">Home</a>
+                </li>
+                <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+                    <span class="breadcrumb-text">Current Page</span>
+                </li>
+            </ol>
         </div>
     </nav>
 
@@ -49,7 +130,7 @@
             <div class="hero-content">
                 <h2 class="hero-title">Professional Trust Fundraising</h2>
                 <p class="hero-description">
-                    Over 20 years' experience in securing funds from trusts and foundations, 
+                    Over 25 years' experience in securing funds from trusts and foundations, 
                     the Big Lottery and UK government for UK-based charities.
                 </p>
                 <div class="hero-buttons">
@@ -92,7 +173,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="pricing">
+    <section id="pricing" class="pricing">
         <div class="container">
             <div class="section-header">
                 <h2>Transparent Pricing</h2>
@@ -167,21 +248,20 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Trust Fundraising</h3>
-                    <p>Professional fundraising support for UK-based charities with over 20 years of experience.</p>
+                    <p>Professional fundraising support for UK-based charities with over 25 years of experience.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Services</h3>
-                    <ul>
-                        <li><a href="#services">Trust & Foundation Appeals</a></li>
-                        <li><a href="#services">Big Lottery Applications</a></li>
-                        <li><a href="#services">Funding Research</a></li>
-                        <li><a href="#services">E-Coaching</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>Email: sue@trust-fundraising.co.uk</p>
-                    <p>Phone: 0208 133 4564</p>
+                    <div class="footer-services-grid">
+                        <ul>
+                            <li><a href="#services">Trust & Foundation Appeals</a></li>
+                            <li><a href="#services">Big Lottery Applications</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#services">Funding Research</a></li>
+                            <li><a href="#services">E-Coaching</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -189,6 +269,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>

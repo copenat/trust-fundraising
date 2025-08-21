@@ -34,6 +34,11 @@ trust-fundraising/
 ├── blog_posts.json         # Blog posts data
 ├── cropped-Beach-huts-Littlehampton.jpg
 ├── cropped-trust-fundraising-logo.jpg
+├── scripts/                # Deployment and setup scripts
+│   ├── setup_raspberry_pi.sh
+│   ├── deploy.sh
+│   ├── fix_port_conflict.sh
+│   └── trust-fundraising.service
 └── backup/                 # Original WordPress export
     └── trust-fundraisingcouk.wordpress.2020-03-11.xml
 ```
@@ -85,6 +90,35 @@ The website uses a modular content system where each section loads content from 
 6. **Testimonials** - Client feedback
 7. **Blog** - Latest news and insights
 8. **Contact** - Email and phone contact information
+
+## 🚀 Deployment
+
+### Raspberry Pi Deployment
+
+The website includes scripts for easy deployment to a Raspberry Pi:
+
+1. **Initial Setup** (run on Raspberry Pi):
+   ```bash
+   sudo bash scripts/setup_raspberry_pi.sh
+   ```
+
+2. **Update Deployment** (run on Raspberry Pi):
+   ```bash
+   sudo bash scripts/deploy.sh
+   ```
+
+3. **Troubleshooting** (if needed):
+   ```bash
+   sudo bash scripts/fix_port_conflict.sh
+   ```
+
+### Local Development
+
+For local development and testing:
+
+```bash
+python3 -m http.server 8000
+```
 
 ## 🔧 Technical Details
 

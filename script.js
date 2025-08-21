@@ -258,15 +258,234 @@ class ContentManager {
     }
 }
 
+// Email protection function
+function showEmail() {
+    const emailLink = document.getElementById('email-link');
+    if (emailLink) {
+        // Decode the email address (obfuscated to prevent bot scraping)
+        const user = 'sue';
+        const domain = 'trust-fundraising.co.uk';
+        const email = user + '@' + domain;
+        
+        // Update the link to show the email and make it clickable
+        emailLink.innerHTML = email;
+        emailLink.href = 'mailto:' + email;
+        emailLink.onclick = null; // Remove the onclick handler
+        
+        // Add a small delay to prevent immediate bot detection
+        setTimeout(() => {
+            emailLink.style.color = '#2563eb';
+        }, 100);
+    }
+}
+
+// Lazy loading for images
+function initLazyLoading() {
+    const images = document.querySelectorAll('img[data-src]');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                img.classList.add('loaded');
+                observer.unobserve(img);
+            }
+        });
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+}
+
+// Performance optimization - Defer non-critical CSS
+function loadNonCriticalCSS() {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+    link.media = 'print';
+    link.onload = function() {
+        this.media = 'all';
+    };
+    document.head.appendChild(link);
+}
+
+// Mobile navigation functionality
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
+
+// Touch-friendly interactions
+function initTouchOptimizations() {
+    // Add touch feedback to buttons and links
+    const touchElements = document.querySelectorAll('.btn, .nav-link, .contact-item');
+    
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+        });
+        
+        element.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+    
+    // Prevent zoom on double tap
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+            event.preventDefault();
+        }
+        lastTouchEnd = now;
+    }, false);
+}
+
+// Performance optimization for mobile
+function initMobilePerformance() {
+    // Reduce motion for users who prefer it
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.style.setProperty('--transition-duration', '0.1s');
+    }
+    
+    // Optimize for mobile network conditions
+    if ('connection' in navigator) {
+        const connection = navigator.connection;
+        if (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g') {
+            // Load lower quality images for slow connections
+            const images = document.querySelectorAll('img[data-src-slow]');
+            images.forEach(img => {
+                img.src = img.dataset.srcSlow;
+            });
+        }
+    }
+}
+
+// Breadcrumb navigation functionality
+function initBreadcrumbNavigation() {
+    const breadcrumbText = document.querySelector('.breadcrumb-text');
+    const sections = [
+        { id: 'home', title: 'Home' },
+        { id: 'about', title: 'About' },
+        { id: 'services', title: 'Services' },
+        { id: 'pricing', title: 'Pricing' },
+        { id: 'clients', title: 'Clients' },
+        { id: 'testimonials', title: 'Testimonials' },
+        { id: 'blog', title: 'News' },
+        { id: 'contact', title: 'Contact' }
+    ];
+    
+    function updateBreadcrumb() {
+        const scrollPosition = window.scrollY + 100; // Offset for better detection
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = document.getElementById(sections[i].id);
+            if (section && scrollPosition >= section.offsetTop) {
+                breadcrumbText.textContent = sections[i].title;
+                break;
+            }
+        }
+    }
+    
+    // Update breadcrumb on scroll
+    window.addEventListener('scroll', updateBreadcrumb);
+    
+    // Initial update
+    updateBreadcrumb();
+}
+
+// Back to top button functionality
+function initBackToTop() {
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    function toggleBackToTop() {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }
+    
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Show/hide button on scroll
+    window.addEventListener('scroll', toggleBackToTop);
+    
+    // Scroll to top when clicked
+    backToTopButton.addEventListener('click', scrollToTop);
+    
+    // Keyboard accessibility
+    backToTopButton.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            scrollToTop();
+        }
+    });
+}
+
 // Contact form functionality
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize logo loading
     loadLogo();
     
-
-    
     // Initialize content manager
     new ContentManager();
+    
+    // Initialize lazy loading
+    initLazyLoading();
+    
+    // Initialize mobile navigation
+    initMobileNav();
+    
+    // Initialize touch optimizations
+    initTouchOptimizations();
+    
+    // Initialize mobile performance optimizations
+    initMobilePerformance();
+    
+    // Initialize breadcrumb navigation
+    initBreadcrumbNavigation();
+    
+    // Initialize back to top button
+    initBackToTop();
+    
+    // Load non-critical CSS after page load
+    setTimeout(loadNonCriticalCSS, 1000);
 });
 
 // Add CSS for blog display

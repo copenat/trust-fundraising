@@ -26,7 +26,7 @@ echo "🔐 Setting permissions..."
 chown -R www-data:www-data /var/www/trust-fundraising
 chmod -R 755 /var/www/trust-fundraising
 
-# Test nginx configuration
+# Test nginx configuration (includes mobile and performance optimizations)
 echo "🧪 Testing nginx configuration..."
 nginx -t
 

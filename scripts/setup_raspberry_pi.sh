@@ -47,18 +47,50 @@ server {
     add_header X-Content-Type-Options "nosniff" always;
     add_header Referrer-Policy "no-referrer-when-downgrade" always;
     add_header Content-Security-Policy "default-src 'self' http: https: data: blob: 'unsafe-inline'" always;
+    add_header X-UA-Compatible "IE=edge" always;
     
-    # Gzip compression
+    # Enhanced Gzip compression for mobile and performance
     gzip on;
     gzip_vary on;
     gzip_min_length 1024;
     gzip_proxied expired no-cache no-store private auth;
-    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss;
+    gzip_types 
+        text/plain 
+        text/css 
+        text/xml 
+        text/javascript 
+        application/x-javascript 
+        application/xml+rss 
+        application/json
+        application/javascript
+        image/svg+xml;
     
-    # Cache static files
-    location ~* \.(jpg|jpeg|png|gif|ico|css|js)$ {
+    # Optimized caching for static assets
+    location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg|woff|woff2|ttf|eot)$ {
         expires 1y;
         add_header Cache-Control "public, immutable";
+        add_header Vary Accept-Encoding;
+    }
+    
+    # Cache HTML and markdown files for shorter time
+    location ~* \.(html|md)$ {
+        expires 1h;
+        add_header Cache-Control "public, must-revalidate";
+    }
+    
+    # Mobile-specific optimizations
+    location ~* \.(css|js)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        add_header Vary Accept-Encoding;
+    }
+    
+    # Optimize images for mobile
+    location ~* \.(jpg|jpeg|png|gif|webp)$ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+        add_header Vary Accept-Encoding;
+        add_header Vary Accept;
     }
     
     # Handle all other requests
@@ -68,6 +100,15 @@ server {
     
     # Security: Hide nginx version
     server_tokens off;
+    
+    # Mobile-optimized connection handling
+    keepalive_timeout 30;
+    keepalive_requests 50;
+    
+    # Enable sendfile optimizations
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
 }
 EOF
 

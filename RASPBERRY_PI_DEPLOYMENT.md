@@ -32,10 +32,10 @@ ssh pi@your-pi-ip
 cd trust-fundraising
 
 # Make the setup script executable
-chmod +x setup_raspberry_pi.sh
+chmod +x scripts/setup_raspberry_pi.sh
 
 # Run the setup script
-sudo ./setup_raspberry_pi.sh
+sudo ./scripts/setup_raspberry_pi.sh
 ```
 
 ## 🔧 Manual Setup (Alternative)
@@ -169,10 +169,10 @@ The setup includes several security measures:
 
 ```bash
 # Make the script executable
-chmod +x deploy.sh
+chmod +x scripts/deploy.sh
 
 # Deploy updates
-sudo ./deploy.sh
+sudo ./scripts/deploy.sh
 ```
 
 ### Manual Update
