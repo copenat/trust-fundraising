@@ -1032,7 +1032,7 @@ body {
 @media (max-width: 768px) {
     /* Navigation mobile optimization */
     .hamburger {
-        display: flex;
+        display: flex !important;
         padding: 0.5rem;
         background: none;
         border: none;
@@ -1050,29 +1050,30 @@ body {
     }
 
     .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        background-color: white;
-        width: 100%;
-        text-align: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
-        padding: 2rem 0;
-        z-index: 1000;
-        border-radius: 0 0 12px 12px;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        display: flex; /* Always flex when visible */
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        right: 0 !important;
+        flex-direction: column !important;
+        background-color: white !important;
+        width: 100% !important;
+        text-align: center !important;
+        transition: all 0.3s ease !important;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
+        padding: 2rem 0 !important;
+        z-index: 1000 !important;
+        border-radius: 0 0 12px 12px !important;
+        transform: translateY(-100%) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important; /* Hidden by default on mobile */
     }
 
     .nav-menu.active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: flex !important; /* Show when active */
         animation: slideIn 0.3s ease;
     }
 

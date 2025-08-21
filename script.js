@@ -336,13 +336,22 @@ function initMobileNav() {
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
+    console.log('Mobile nav init - Hamburger found:', !!hamburger);
+    console.log('Mobile nav init - Nav menu found:', !!navMenu);
+    
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', function(e) {
             e.preventDefault();
             e.stopPropagation();
             
+            console.log('Hamburger clicked!');
+            console.log('Nav menu classes before:', navMenu.className);
+            
             navMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
+            
+            console.log('Nav menu classes after:', navMenu.className);
+            console.log('Is active?', navMenu.classList.contains('active'));
             
             // Prevent body scroll when menu is open
             document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
