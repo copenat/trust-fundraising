@@ -6,8 +6,8 @@ echo "🔨 Building Trust Fundraising website..."
 # Get current Git commit hash (short version)
 GIT_HASH=$(git rev-parse --short HEAD 2>/dev/null || echo "dev")
 
-# Get current date
-BUILD_DATE=$(date +"%d/%m/%Y")
+# Get current date and time
+BUILD_DATE=$(date +"%d/%m/%Y %H:%M")
 
 # Check if this is being run from a Git hook
 if [ "$GIT_HOOK" = "1" ]; then
