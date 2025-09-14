@@ -1,7 +1,7 @@
 <div class="about-text">
     <blockquote class="testimonial-highlight">
         "Sue's knowledge of trusts is truly encyclopaedic."
-        <cite>— Gill Henry, Grants Fundraiser, National Star College</cite>
+        <cite>— Gill Henry, Grants Manager, National Star College</cite>
     </blockquote>
     <p>
         Welcome to trust-fundraising.co.uk and to the home page of Sue Crow, a Trusts and Statutory Fundraising Specialist.
@@ -18,8 +18,8 @@
         Sue offers the following services:
     </p>
     <ul>
-        <li>Trust and Foundation appeal drafting</li>
-        <li>Big Lottery and statutory application drafting</li>
+        <li>Drafting of applications and appeals to Trusts and Foundations</li>
+        <li>Drafting of Lottery and statutory applications</li>
         <li>Bespoke funding research tailored to your charity</li>
         <li>Trust fundraising audits</li>
         <li>Bespoke reports for donors</li>
@@ -42,7 +42,7 @@
         <p>Years Experience</p>
     </div>
     <div class="stat">
-                        <h3>£20m+</h3>
+                        <h3>£30m+</h3>
         <p>Funds Raised</p>
     </div>
     <div class="stat">
