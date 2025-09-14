@@ -2,14 +2,14 @@
     <div class="service-icon">
         <i class="fas fa-file-alt"></i>
     </div>
-    <h3>Trust & Foundation Appeal Drafting</h3>
+    <h3>Drafting of applications and appeals to Trusts and Foundations</h3>
     <p>Professional application writing tailored to specific trust requirements and criteria.</p>
 </div>
 <div class="service-card">
     <div class="service-icon">
         <i class="fas fa-star"></i>
     </div>
-    <h3>Big Lottery & Statutory Applications</h3>
+    <h3>Drafting of Lottery and statutory applications</h3>
     <p>Expert guidance through complex lottery and government funding applications.</p>
 </div>
 <div class="service-card">
