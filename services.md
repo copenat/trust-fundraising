@@ -7,6 +7,13 @@
 </div>
 <div class="service-card">
     <div class="service-icon">
+        <i class="fas fa-comments"></i>
+    </div>
+    <h3>E-Coaching Service</h3>
+    <p>Email-based coaching to develop new successful grant-seekers and bring fresh ideas to experienced fundraisers.</p>
+</div>
+<div class="service-card">
+    <div class="service-icon">
         <i class="fas fa-star"></i>
     </div>
     <h3>Drafting of Lottery and statutory applications</h3>
@@ -33,10 +40,4 @@
     <h3>Training & Workshops</h3>
     <p>Professional development sessions to build your team's fundraising capabilities.</p>
 </div>
-<div class="service-card">
-    <div class="service-icon">
-        <i class="fas fa-comments"></i>
-    </div>
-    <h3>E-Coaching Service</h3>
-    <p>Email-based coaching to develop new successful grant-seekers and bring fresh ideas to experienced fundraisers.</p>
-</div>
+
